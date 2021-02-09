@@ -1,5 +1,6 @@
 package ru.sapteh.service;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -19,8 +20,13 @@ public class RoleDaoImp implements Dao<Role, Integer> {
     @Override
     public Role read(Integer id) {
         try(Session session = factory.openSession()){
-            Role role = session.get(Role.class, id);
-            return role;
+            Role result = session.get(Role.class, id);
+
+            //Используется при FetchType.LAZY
+            if(result != null){
+                Hibernate.initialize(result.getUserRoles());
+            }
+            return result;
         }
     }
 

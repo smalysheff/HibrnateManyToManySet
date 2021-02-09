@@ -16,17 +16,21 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false, length = 50)
+    @Column(length = 50)
     @NonNull
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinTable
-    private Set<Role> roles;
+    @Column(name = "last_name")
+    @NonNull
+    private String lastName;
 
-    public void addRole(Role role){
-        if(roles == null) roles = new HashSet<>();
-        this.roles.add(role);
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<UserRole> userRoles;
+
+    @Transient
+    public int sizeRole(){
+        if(userRoles == null) userRoles = new HashSet<>();
+        return userRoles.size();
     }
 
     @Override

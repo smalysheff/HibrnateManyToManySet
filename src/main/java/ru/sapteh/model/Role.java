@@ -20,13 +20,9 @@ public class Role {
     @NonNull
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<UserRole> userRoles;
 
-    public void addUser(User user){
-        if(users == null) users = new HashSet<>();
-        this.users.add(user);
-    }
 
     @Override
     public String toString() {

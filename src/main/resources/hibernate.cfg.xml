@@ -20,6 +20,7 @@
 
         <mapping class="ru.sapteh.model.Role"/>
         <mapping class="ru.sapteh.model.User"/>
+        <mapping class="ru.sapteh.model.UserRole"/>
 
     </session-factory>
 </hibernate-configuration>
