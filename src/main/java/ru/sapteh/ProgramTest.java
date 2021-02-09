@@ -40,11 +40,11 @@ public class ProgramTest {
 
 //        System.out.println(userRoles);
 
-
-       userDaoImp.findByAll().forEach(user -> {
-           System.out.println(user.sizeRole());
-       });
 //
+//       userDaoImp.findByAll().forEach(user -> {
+//           System.out.println(user.sizeRoleMethod());
+//       });
+////
 //
 //
 //        System.out.println(userRoles.size());

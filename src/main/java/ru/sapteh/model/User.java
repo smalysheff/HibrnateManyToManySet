@@ -28,7 +28,10 @@ public class User {
     private Set<UserRole> userRoles;
 
     @Transient
-    public int sizeRole(){
+    private final int sizeRole = sizeRoleMethod();
+
+    @Transient
+    public int sizeRoleMethod(){
         if(userRoles == null) userRoles = new HashSet<>();
         return userRoles.size();
     }

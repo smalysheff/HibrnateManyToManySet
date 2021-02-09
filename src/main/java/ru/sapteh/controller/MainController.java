@@ -58,7 +58,7 @@ public class MainController {
 //        regDateColumn.setCellValueFactory(p -> new SimpleObjectProperty<>(p.getValue()
 //                .getUserRoles().stream().findFirst().get().getRegistrationDate()));
 
-//        countRoleColumn.setCellValueFactory(p -> new SimpleObjectProperty<>(p.getValue().sizeRole()));
+        countRoleColumn.setCellValueFactory(p -> new SimpleObjectProperty<>(p.getValue().getSizeRole()));
 //        lastRegRoleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
 //
         userTableView.setItems(userList);
