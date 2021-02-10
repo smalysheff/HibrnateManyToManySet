@@ -35,25 +35,12 @@ public class User implements Serializable {
     @Transient
     private int sizeRole;
 
-    @Transient
-    public int sizeRoleMethod(){
-
-
-//        SessionFactory factory = new Configuration().configure().buildSessionFactory();
-//        Session session = factory.openSession();
-//
-//        Query query = session.createNativeQuery("select count(*) from user_role as ur " +
-//                "left join user as u on ur.user_id=u.id " +
-//                "left join role as r on ur.role_id=r.id where id=" + getId());
-
-        return 0;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 }

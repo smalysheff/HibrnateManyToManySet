@@ -3,12 +3,16 @@ package ru.sapteh.dao;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import ru.sapteh.dao.Dao;
 import ru.sapteh.model.User;
 
+import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
+@Transactional
 public class UserDaoImp implements Dao<User, Integer> {
     private final SessionFactory factory;
 
@@ -34,7 +38,7 @@ public class UserDaoImp implements Dao<User, Integer> {
     @Override
     public List<User> findByAll() {
         try (Session session = factory.openSession()) {
-            Query<User> result = session.createQuery("FROM User");
+            Query<User> result = session.createQuery("FROM User", User.class);
             return result.list();
         }
     }
@@ -65,4 +69,5 @@ public class UserDaoImp implements Dao<User, Integer> {
             session.getTransaction().commit();
         }
     }
+
 }

@@ -7,8 +7,10 @@ import org.hibernate.query.Query;
 import ru.sapteh.dao.Dao;
 import ru.sapteh.model.Role;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 public class RoleDaoImp implements Dao<Role, Integer> {
     private final SessionFactory factory;
 

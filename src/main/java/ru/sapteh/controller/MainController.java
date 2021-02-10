@@ -1,5 +1,6 @@
 package ru.sapteh.controller;
 
+import com.sun.istack.Nullable;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +14,7 @@ import ru.sapteh.model.User;
 import ru.sapteh.dao.UserDaoImp;
 
 import java.util.Date;
+import java.util.Optional;
 
 public class MainController {
 
@@ -30,13 +32,12 @@ public class MainController {
     @FXML
     private TableColumn<User, String> firstNameColumn;
 
+    @FXML
+    private TableColumn<User, Integer> countRoleColumn;
 
     @FXML
     private TableColumn<User, Date> regDateColumn;
-
-    @FXML
-    private TableColumn<User, Integer> countRoleColumn;
-//
+    //
     @FXML
     private TableColumn<User, String> lastRegRoleColumn;
 
@@ -55,24 +56,14 @@ public class MainController {
         firstNameColumn.setCellValueFactory(p ->
                 new SimpleObjectProperty<>(p.getValue().getName()));
 
+        regDateColumn.setCellValueFactory(u ->
+                new SimpleObjectProperty<>(u.getValue().getUserRoles().iterator().next().getRegistrationDate()));
+
         countRoleColumn.setCellValueFactory(u ->
                 new SimpleObjectProperty<>(u.getValue().getUserRoles().size()));
 
-//        regDateColumn.setCellValueFactory(u ->
-//                new SimpleObjectProperty<>(u.getValue().getUserRoles().iterator().next().getRegistrationDate()));
-//
-
-
-
-//
 //        lastRegRoleColumn.setCellValueFactory(u ->
-//                new SimpleObjectProperty<>(u.getValue().getUserRoles().iterator().next().getRole()));
-
-
-
-
-
-
+//                new SimpleObjectProperty<>(u.getValue().getName()));
 
         userTableView.setItems(userList);
     }

@@ -10,7 +10,7 @@
           <TableColumn fx:id="idColumn" minWidth="20.0" prefWidth="50.0" text="id" />
           <TableColumn fx:id="lastNameColumn" minWidth="20.0" prefWidth="100.0" text="Last Name" />
           <TableColumn fx:id="firstNameColumn" prefWidth="100.0" text="First Name" />
-<!--          <TableColumn fx:id="regDateColumn" prefWidth="100.0" text="Reg date" />-->
+          <TableColumn fx:id="regDateColumn" prefWidth="100.0" text="Reg date" />
           <TableColumn fx:id="countRoleColumn" prefWidth="100.0" text="Count Role" />
             <TableColumn prefWidth="75.0" text="Column X" />
             <TableColumn prefWidth="75.0" text="Column X" />

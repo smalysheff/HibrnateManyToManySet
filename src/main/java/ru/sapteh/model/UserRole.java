@@ -20,7 +20,7 @@ public class UserRole implements Serializable {
 
     @Column(name = "registr_date")
     @NonNull
-    private Date registrationDate;
+    private Date registrationDate = new Date();
 
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)

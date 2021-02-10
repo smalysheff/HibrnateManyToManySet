@@ -8,6 +8,7 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/user_db?serverTimezone=UTC</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">9874123</property>
+        <property name="hibernate.current_session_context_class">thread</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 
         <!--Create table ddl code hibernate-->
@@ -16,7 +17,7 @@
         <!--Show sql code-->
         <property name="show_sql">true</property>
 <!--        <property name="format_sql">true</property>-->
-<!--        <property name="use_sql_comments">true</property>-->
+        <property name="use_sql_comments">true</property>
 
         <mapping class="ru.sapteh.model.Role"/>
         <mapping class="ru.sapteh.model.User"/>
