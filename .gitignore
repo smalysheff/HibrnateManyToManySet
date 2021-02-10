@@ -3,7 +3,7 @@ target/*
 
 *.class
 
-*cfg.xml
+*.cfg.xml
 
 *.jar
 *.war

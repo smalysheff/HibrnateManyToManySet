@@ -1,4 +1,4 @@
-package ru.sapteh.service;
+package ru.sapteh.dao;
 
 import org.hibernate.Hibernate;
 import org.hibernate.Session;

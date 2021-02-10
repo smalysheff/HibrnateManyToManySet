@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import ru.sapteh.dao.Dao;
+import ru.sapteh.dao.RoleDaoImp;
 import ru.sapteh.model.Role;
 
 import java.util.List;

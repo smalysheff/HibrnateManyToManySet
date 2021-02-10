@@ -29,7 +29,7 @@ public class User implements Serializable {
     @NonNull
     private String lastName;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
     private Set<UserRole> userRoles;
 
     @Transient
