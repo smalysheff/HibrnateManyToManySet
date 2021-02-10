@@ -11,7 +11,7 @@
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 
         <!--Create table ddl code hibernate-->
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
 
         <!--Show sql code-->
         <property name="show_sql">true</property>
