@@ -24,6 +24,26 @@ public class ProgramTest {
         Dao<UserRole, Integer> userRoleDaoImp = new UserRoleDaoImp(factory);
 
 
+        System.out.println(userDaoImp.read(1));
+
+
+//        List<User> users = userDaoImp.findByAll();
+//
+//        for(User user : users){
+//
+//            System.out.printf("%d %s %d\n", user.getId(), user.getName(), user.getUserRoles().size());
+//
+//        }
+
+//        Set<UserRole> userRoles = user.getUserRoles();
+//
+//        System.out.println(userRoles.size());
+//
+//        userRoles.forEach(System.out::println);
+
+
+
+
 //        User user = userDaoImp.read(2);
 //
 //        userDaoImp.delete(user);

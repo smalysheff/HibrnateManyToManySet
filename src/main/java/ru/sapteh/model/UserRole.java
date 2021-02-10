@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import java.io.Serializable;
 import java.util.Date;
 
 @Getter
@@ -12,7 +13,7 @@ import java.util.Date;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "user_role")
-public class UserRole {
+public class UserRole implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -37,7 +38,7 @@ public class UserRole {
                 "id=" + id +
                 ", RegistrationDate=" + registrationDate +
                 ", userId=" + getUser().getId() +
-                ", roleId=" + getRole().getId() +
+                ", roleId=" + getRole().getName() +
                 '}';
     }
 }

@@ -34,33 +34,50 @@ public class MainController {
     private TableColumn<User, String> firstNameColumn;
 
 
-//    @FXML
-//    private TableColumn<User, Date> regDateColumn;
+    @FXML
+    private TableColumn<User, Date> regDateColumn;
 
     @FXML
     private TableColumn<User, Integer> countRoleColumn;
 //
-//    @FXML
-//    private TableColumn<User, String> lastRegRoleColumn;
+    @FXML
+    private TableColumn<User, String> lastRegRoleColumn;
 
     @FXML
     public void initialize(){
 
-
-
-
-
-
         findByAllUserToDataBase();
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        firstNameColumn.setCellValueFactory(p -> new SimpleObjectProperty<>(p.getValue().getName()));
-//        regDateColumn.setCellValueFactory(p -> new SimpleObjectProperty<>(p.getValue()
-//                .getUserRoles().stream().findFirst().get().getRegistrationDate()));
 
-        countRoleColumn.setCellValueFactory(p -> new SimpleObjectProperty<>(p.getValue().getSizeRole()));
-//        lastRegRoleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
+
+        idColumn.setCellValueFactory(u ->
+                        new SimpleObjectProperty<>(u.getValue().getId()));
+
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+
+        firstNameColumn.setCellValueFactory(p ->
+                new SimpleObjectProperty<>(p.getValue().getName()));
+
+        regDateColumn.setCellValueFactory(u ->
+                new SimpleObjectProperty<>(
+                        u.getValue().getUserRoles().iterator().next().getRegistrationDate()));
+
+
+
+        countRoleColumn.setCellValueFactory(u ->
+                new SimpleObjectProperty<>(u.getValue().getUserRoles().size()));
+
+
+
 //
+//        lastRegRoleColumn.setCellValueFactory(u ->
+//                new SimpleObjectProperty<>(u.getValue().getUserRoles().iterator().next().getRole()));
+
+
+
+
+
+
+
         userTableView.setItems(userList);
     }
 
@@ -69,9 +86,7 @@ public class MainController {
         SessionFactory factory = new Configuration().configure().buildSessionFactory();
         Dao<User, Integer> userDaoImp = new UserDaoImp(factory);
 
-        List<User> usersDataBase = userDaoImp.findByAll();
-
-        userList.addAll(usersDataBase);
+        userList.addAll(userDaoImp.findByAll());
 
         factory.close();
     }
