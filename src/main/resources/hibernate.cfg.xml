@@ -11,12 +11,12 @@
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 
         <!--Create table ddl code hibernate-->
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!--Show sql code-->
         <property name="show_sql">true</property>
-        <property name="format_sql">true</property>
-        <property name="use_sql_comments">true</property>
+<!--        <property name="format_sql">true</property>-->
+<!--        <property name="use_sql_comments">true</property>-->
 
         <mapping class="ru.sapteh.model.Role"/>
         <mapping class="ru.sapteh.model.User"/>
