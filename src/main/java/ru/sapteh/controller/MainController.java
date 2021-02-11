@@ -1,24 +1,25 @@
 package ru.sapteh.controller;
 
-import com.sun.istack.Nullable;
+import javafx.beans.Observable;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import ru.sapteh.dao.Dao;
-import ru.sapteh.model.User;
 import ru.sapteh.dao.UserDaoImp;
+import ru.sapteh.model.User;
 
 import java.util.Date;
-import java.util.Optional;
+import java.util.List;
 
 public class MainController {
 
-    private final ObservableList<User> userList = FXCollections.observableArrayList();
+    private ObservableList<User> userList = FXCollections.observableArrayList();
 
     @FXML
     private TableView<User> userTableView;
@@ -32,12 +33,13 @@ public class MainController {
     @FXML
     private TableColumn<User, String> firstNameColumn;
 
-    @FXML
-    private TableColumn<User, Integer> countRoleColumn;
 
     @FXML
     private TableColumn<User, Date> regDateColumn;
-    //
+
+    @FXML
+    private TableColumn<User, Integer> countRoleColumn;
+//
     @FXML
     private TableColumn<User, String> lastRegRoleColumn;
 
@@ -50,20 +52,31 @@ public class MainController {
         idColumn.setCellValueFactory(u ->
                         new SimpleObjectProperty<>(u.getValue().getId()));
 
-        lastNameColumn.setCellValueFactory(u ->
-                new SimpleObjectProperty<>(u.getValue().getLastName()));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 
         firstNameColumn.setCellValueFactory(p ->
                 new SimpleObjectProperty<>(p.getValue().getName()));
 
         regDateColumn.setCellValueFactory(u ->
-                new SimpleObjectProperty<>(u.getValue().getUserRoles().iterator().next().getRegistrationDate()));
+                new SimpleObjectProperty<>(
+                        u.getValue().getUserRoles().iterator().next().getRegistrationDate()));
+
+
 
         countRoleColumn.setCellValueFactory(u ->
                 new SimpleObjectProperty<>(u.getValue().getUserRoles().size()));
 
+
+
+//
 //        lastRegRoleColumn.setCellValueFactory(u ->
-//                new SimpleObjectProperty<>(u.getValue().getName()));
+//                new SimpleObjectProperty<>(u.getValue().getUserRoles().iterator().next().getRole()));
+
+
+
+
+
+
 
         userTableView.setItems(userList);
     }

@@ -56,10 +56,6 @@ public class UserDaoImpTest {
 
     @Test
     public void sqlNativeTest(){
-        List<User> users = userDaoImp.sqlNative();
-
-        assertNull(users);
-//        users.forEach(System.out::println);
 
     }
 
