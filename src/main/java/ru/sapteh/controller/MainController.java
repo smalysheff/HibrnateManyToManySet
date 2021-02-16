@@ -60,7 +60,8 @@ public class MainController {
             }
         });
 
-        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        lastNameColumn.setCellValueFactory(userStringCellDataFeatures ->
+                new SimpleObjectProperty<>(userStringCellDataFeatures.getValue().getLastName()));
 
         firstNameColumn.setCellValueFactory(p ->
                 new SimpleObjectProperty<>(p.getValue().getName()));
