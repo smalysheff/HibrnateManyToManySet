@@ -3,6 +3,7 @@ package ru.sapteh.dao;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import ru.sapteh.dao.Dao;
 import ru.sapteh.model.Role;
@@ -20,15 +21,11 @@ public class RoleDaoImp implements Dao<Role, Integer> {
 
 
     @Override
-    public Role read(Integer id) {
+    public Role findById(Integer id) {
         try(Session session = factory.openSession()){
-            Role result = session.get(Role.class, id);
-
-            //Используется при FetchType.LAZY
-            if(result != null){
-                Hibernate.initialize(result.getUserRoles());
-            }
-            return result;
+            Query<Role> query = session.createNativeQuery("select * from role where id = :id", Role.class)
+                    .setParameter("id", id);
+            return query.getSingleResult();
         }
     }
 
@@ -44,8 +41,13 @@ public class RoleDaoImp implements Dao<Role, Integer> {
     public void create(Role role) {
         try(Session session = factory.openSession()){
             session.beginTransaction();
-            session.save(role);
+            Query<Role> query = session.createNativeQuery("insert into role (name) values (:name)", Role.class);
+            query.setParameter("name", role.getName());
+//            Query<Role> query = session.createNativeQuery("insert into role (name) values (?)", Role.class);
+//            query.setParameter(1, role.getName());
+            query.executeUpdate();
             session.getTransaction().commit();
+
         }
     }
 
@@ -53,7 +55,10 @@ public class RoleDaoImp implements Dao<Role, Integer> {
     public void update(Role role) {
         try(Session session = factory.openSession()){
             session.beginTransaction();
-            session.update(role);
+            Query<Role> query = session.createNativeQuery("update role set name = :name where id = :id", Role.class);
+            query.setParameter("name", role.getName());
+            query.setParameter("id", role.getId());
+            query.executeUpdate();
             session.getTransaction().commit();
         }
     }
@@ -62,7 +67,9 @@ public class RoleDaoImp implements Dao<Role, Integer> {
     public void delete(Role role) {
         try(Session session = factory.openSession()){
             session.beginTransaction();
-            session.delete(role);
+            Query<Role> query = session.createNativeQuery("delete from role where id = :id", Role.class);
+            query.setParameter("id", role.getId());
+            query.executeUpdate();
             session.getTransaction().commit();
         }
     }

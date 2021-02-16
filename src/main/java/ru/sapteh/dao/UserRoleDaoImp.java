@@ -22,11 +22,10 @@ public class UserRoleDaoImp implements Dao<UserRole, Integer> {
 
 
     @Override
-    public UserRole read(Integer id) {
+    public UserRole findById(Integer id) {
         try (Session session = factory.openSession()) {
             UserRole result = session.get(UserRole.class, id);
 
-            //Используется при FetchType.LAZY
             if (result != null){
                 Hibernate.initialize(result.getRole());
                 Hibernate.initialize(result.getUser());

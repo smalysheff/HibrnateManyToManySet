@@ -6,7 +6,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="oneToManyManyToOneSetSize" />
+          <factory-entry name="oneToManyManyToOneSetSize" value="454e9ca4-9487-4754-87aa-861b97d96116" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
@@ -48,5 +48,6 @@
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.14.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.13.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>

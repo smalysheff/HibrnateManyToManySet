@@ -39,8 +39,8 @@ public class RoleDaoImpTest {
     }
 
     @Test
-    public void read() {
-        role = roleDaoImp.read(1);
+    public void findByIdTest() {
+        role = roleDaoImp.findById(1);
         Assert.assertNotNull(role);
         System.out.println(role);
     }
@@ -54,14 +54,13 @@ public class RoleDaoImpTest {
 
     @Test
     public void create() {
-        role = new Role("Ivan");
+        role = new Role("James");
         roleDaoImp.create(role);
-        assertNotNull(roleDaoImp.read(role.getId()));
     }
 
     @Test
     public void update() {
-        role = roleDaoImp.read(8);
+        role = roleDaoImp.findById(13);
         role.setName("registrator");
         roleDaoImp.update(role);
 
@@ -69,7 +68,7 @@ public class RoleDaoImpTest {
 
     @Test
     public void delete() {
-        roleDaoImp.delete(roleDaoImp.read(roleListTest.size()-1));
-        assertNull(roleDaoImp.read(roleListTest.size()-1));
+        roleDaoImp.delete(roleDaoImp.findById(14));
+//        assertNull(roleDaoImp.findById(roleListTest.size()-1));
     }
 }

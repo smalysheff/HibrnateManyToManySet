@@ -22,7 +22,7 @@ public class UserDaoImp implements Dao<User, Integer> {
 
 
     @Override
-    public User read(Integer id) {
+    public User findById(Integer id) {
         try (Session session = factory.openSession()) {
             User result = session.get(User.class, id);
 
