@@ -2,16 +2,19 @@ package ru.sapteh.controller;
 
 import javafx.beans.Observable;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import ru.sapteh.dao.Dao;
 import ru.sapteh.dao.UserDaoImp;
+import ru.sapteh.model.Role;
 import ru.sapteh.model.User;
 
 import java.util.Date;
@@ -49,8 +52,13 @@ public class MainController {
         findByAllUserToDataBase();
 
 
-        idColumn.setCellValueFactory(u ->
-                        new SimpleObjectProperty<>(u.getValue().getId()));
+        idColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<User, Integer>, ObservableValue<Integer>>() {
+            @Override
+            public ObservableValue<Integer> call(TableColumn.CellDataFeatures<User, Integer> userIntegerCellDataFeatures) {
+
+                return (ObservableValue<Integer>) new SimpleObjectProperty(userIntegerCellDataFeatures.getValue().getId());
+            }
+        });
 
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 
@@ -61,21 +69,12 @@ public class MainController {
                 new SimpleObjectProperty<>(
                         u.getValue().getUserRoles().iterator().next().getRegistrationDate()));
 
-
-
         countRoleColumn.setCellValueFactory(u ->
                 new SimpleObjectProperty<>(u.getValue().getUserRoles().size()));
 
-
-
-//
 //        lastRegRoleColumn.setCellValueFactory(u ->
-//                new SimpleObjectProperty<>(u.getValue().getUserRoles().iterator().next().getRole()));
-
-
-
-
-
+//                new SimpleObjectProperty<>(
+//                        u.getValue().getUserRoles().iterator().next().getRole()));
 
 
         userTableView.setItems(userList);
