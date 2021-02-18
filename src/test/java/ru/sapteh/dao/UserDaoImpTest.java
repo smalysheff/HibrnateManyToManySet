@@ -6,12 +6,8 @@ import org.hibernate.cfg.Configuration;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ru.sapteh.model.Role;
+import ru.sapteh.dao.impl.UserDaoImp;
 import ru.sapteh.model.User;
-
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class UserDaoImpTest {
     private SessionFactory factory;

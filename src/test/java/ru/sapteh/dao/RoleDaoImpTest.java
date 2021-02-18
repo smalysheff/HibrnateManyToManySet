@@ -7,13 +7,10 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ru.sapteh.dao.Dao;
-import ru.sapteh.dao.RoleDaoImp;
+import ru.sapteh.dao.impl.RoleDaoImp;
 import ru.sapteh.model.Role;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class RoleDaoImpTest {
     private SessionFactory factory;
