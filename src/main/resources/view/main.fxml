@@ -2,10 +2,11 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.sapteh.controller.MainController">
    <children>
-      <TableView fx:id="userTableView" layoutX="212.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <TableView fx:id="userTableView" layoutX="212.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
         <columns>
           <TableColumn fx:id="idColumn" minWidth="20.0" prefWidth="50.0" text="id" />
           <TableColumn fx:id="lastNameColumn" minWidth="20.0" prefWidth="100.0" text="Last Name" />
@@ -17,5 +18,7 @@
 <!--          <TableColumn fx:id="lastRegRoleColumn" prefWidth="100.0" text="Last Reg Role" />-->
         </columns>
       </TableView>
+      <Label fx:id="countLabel" layoutX="74.0" layoutY="373.0" text="Label" AnchorPane.bottomAnchor="10.0" />
+      <Text layoutX="32.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Count:" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="30.0" />
    </children>
 </AnchorPane>
