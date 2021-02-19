@@ -1,6 +1,7 @@
 package ru.sapteh.controller;
 
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +19,7 @@ import ru.sapteh.dao.impl.UserDaoImp;
 import ru.sapteh.model.User;
 import ru.sapteh.model.UserRole;
 
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Objects;
@@ -45,52 +47,46 @@ public class MainController {
     @FXML
     private Label countLabel;
 
+    //RightPane
+    @FXML
+    private Label idLbl;
+    @FXML
+    private Label lastNameLbl;
+    @FXML
+    private Label firstNameLbl;
+    @FXML
+    private Label regDateLbl;
+    @FXML
+    private Label countRoleLbl;
+    @FXML
+    private Label rolesLbl;
+
 
     @FXML
     public void initialize(){
 
         findByAllUserToDataBase();
 
-
         idColumn.setCellValueFactory(u ->
                 new SimpleObjectProperty<>(u.getValue().getId()));
         lastNameColumn.setCellValueFactory(userStringCellDataFeatures ->
                 new SimpleObjectProperty<>(userStringCellDataFeatures.getValue().getLastName()));
-
-        firstNameColumn.setEditable(true);
-        firstNameColumn.setOnEditCommit(event -> {
-            event.getTableView().getItems().get(event.getTablePosition().getRow()).setName(event.getNewValue());
-        });
-
-//        firstNameColumn.getTableView().getItems().get(
-//                new EventHandler<TableColumn.CellEditEvent<User, String>>() {
-//                    @Override
-//                    public void handle(TableColumn.CellEditEvent<User, String> event) {
-//                        System.out.println(event.getTablePosition().getRow());
-//                    }
-//                });
-
         firstNameColumn.setCellValueFactory(p ->
                 new SimpleObjectProperty<>(p.getValue().getName()));
-        regDateColumn.setCellValueFactory(u ->
-                new SimpleObjectProperty<>(
-                        u.getValue().getUserRoles().stream()
-                        .min(Comparator.comparing(UserRole::getRegistrationDate))
-                        .get().getRegistrationDate()));
-        countRoleColumn.setCellValueFactory(u ->
-                new SimpleObjectProperty<>(u.getValue().getUserRoles().size()));
-//        lastRegRoleColumn.setCellValueFactory(u ->
-//                new SimpleObjectProperty<>(
-//                        u.getValue().getUserRoles().stream().findFirst().get().getRole().toString()));
+
         userTableView.setEditable(true);
         userTableView.setItems(userList);
 
+
         //Count users to database
         countLabel.setText(String.valueOf(userList.size()));
+
+        //Listener tab User tableView
+        showUserDetails(null);
+        userTableView.getSelectionModel().selectedItemProperty().addListener(
+                (observableValue, user, t1) -> showUserDetails(t1)
+        );
     }
-
-
-
 
     private void findByAllUserToDataBase(){
         SessionFactory factory = new Configuration().configure().buildSessionFactory();
@@ -99,6 +95,41 @@ public class MainController {
         userList.addAll(userDaoImp.findByAll());
 
         factory.close();
+    }
+
+    private void showUserDetails(User user){
+
+
+        if(user != null){
+            //Initialize roles to user
+            StringBuilder sb = new StringBuilder();
+            for(UserRole role : user.getUserRoles()){
+                sb.append(role.getRole().getName()).append(", ");
+            }
+
+            idLbl.setText(String.valueOf(user.getId()));
+            lastNameLbl.setText(user.getLastName());
+            firstNameLbl.setText(user.getName());
+            regDateLbl.setText(
+                    new SimpleDateFormat("dd.MM.yyyy").format(user.getUserRoles().stream()
+                    .max(Comparator.comparing(UserRole::getRegistrationDate))
+                    .get().getRegistrationDate())
+            );
+            countRoleLbl.setText(String.valueOf(
+                    user.getUserRoles().size()
+            ));
+            rolesLbl.setText(sb.toString());
+
+        } else {
+            idLbl.setText("");
+            lastNameLbl.setText("");
+            firstNameLbl.setText("");
+            regDateLbl.setText("");
+            countRoleLbl.setText("");
+            rolesLbl.setText("");
+        }
+
+
     }
 
 
