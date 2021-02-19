@@ -1,3 +1,18 @@
+insert into user (last_name, name) values ('Ivanov', 'Ivan');
+insert into user (last_name, name) values ('Martin', 'Robert');
+insert into user (last_name, name) values ('Fauler', 'Martin');
+insert into user (last_name, name) values ('Goslin', 'James');
+insert into user (last_name, name) values ('Ranolds', 'Raion');
+insert into user (last_name, name) values ('Geits', 'Bill');
+
+insert into role (name) values ('admin');
+insert into role (name) values ('user');
+insert into role (name) values ('teacher');
+insert into role (name) values ('superadmin');
+insert into role (name) values ('moderator');
+insert into role (name) values ('manager');
+
+
 insert into user_role (registr_date, role_id, user_id) values ('2021-02-10 22:21:58', 1, 1);
 insert into user_role (registr_date, role_id, user_id) values ('2021-02-10 22:21:58', 2, 1);
 insert into user_role (registr_date, role_id, user_id) values ('2021-04-10 22:21:58', 3, 2);
